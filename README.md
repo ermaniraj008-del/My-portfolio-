@@ -1,28 +1,3 @@
-# My-portfolio-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maniraj Kumar — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #0a0a0f;
-      --surface: #111118;
-      --border: #1e1e2e;
-      --accent: #00e5ff;
-      --accent2: #ff4d6d;
-      --text: #e8e8f0;
-      --muted: #6b6b8a;
-      --card: #13131c;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
