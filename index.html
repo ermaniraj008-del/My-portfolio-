@@ -256,4 +256,655 @@ section{position:relative;padding:120px 0}
 @keyframes accordion{0%,100%{height:20px}35%,65%{height:52px}}
 
 /* project 2: routine checklist ticks itself off */
-.routine{width:min(100%,340px);background:#0b1a2c;border:1px solid var(--line);border-radius:
+.routine{width:min(100%,340px);background:#0b1a2c;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 30px 60px -25px rgba(0,0,0,.85);transition:transform .6s var(--ease)}
+.project:hover .routine{transform:rotate(-2.5deg) translateY(-6px)}
+.routine h4{font-family:var(--display);font-size:1rem;margin-bottom:6px}
+.routine li{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(35,68,102,.6);font-size:.92rem;color:var(--muted)}
+.routine svg{width:24px;height:24px;flex:none;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.routine svg rect{stroke:var(--line)}
+.routine svg path{stroke:var(--mint);stroke-dasharray:24;stroke-dashoffset:24}
+.project.in .routine li{animation:lit .4s forwards;animation-delay:calc(var(--i)*450ms + 800ms)}
+.project.in .routine svg path{animation:draw .5s var(--ease) forwards;animation-delay:calc(var(--i)*450ms + 800ms)}
+.project.in .routine svg rect{animation:boxfill .4s forwards;animation-delay:calc(var(--i)*450ms + 800ms)}
+.rt-bar{height:6px;background:var(--panel2);border-radius:4px;overflow:hidden;margin-top:16px}
+.rt-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--mint))}
+.project.in .rt-bar i{animation:fillbar 2.3s linear .8s forwards}
+@keyframes lit{to{color:var(--text)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes boxfill{to{fill:rgba(123,224,176,.16);stroke:var(--mint)}}
+@keyframes fillbar{to{width:100%}}
+
+/* project 3: code editor types itself */
+.editor{width:min(100%,360px);background:#0b1a2c;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(0,0,0,.85);font-family:var(--mono);transition:box-shadow .5s,transform .6s var(--ease)}
+.project:hover .editor{box-shadow:0 30px 70px -20px rgba(92,200,255,.35);transform:translateY(-6px)}
+.ed-tabs{display:flex;border-bottom:1px solid var(--line);font-size:.74rem;color:var(--muted)}
+.ed-tabs span{padding:10px 16px}
+.ed-tabs .on{color:var(--text);background:rgba(22,48,80,.7);border-bottom:2px solid var(--gold)}
+.editor .code{font-size:.8rem;padding:18px 20px}
+
+/* project 4: design tokens drop in */
+.tokens{text-align:center}
+.tokens .aa{font-family:var(--display);font-weight:800;font-size:clamp(4rem,10vw,6rem);line-height:1;letter-spacing:-.04em;
+  background:linear-gradient(90deg,var(--gold),var(--sky),var(--mint),var(--gold));background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:300% 0}}
+.sw-row{display:flex;justify-content:center;margin-top:22px}
+.sw-row i{width:56px;height:56px;border-radius:15px;background:var(--c);border:2px solid var(--panel2);margin-left:-16px;
+  transition:transform .5s var(--ease),margin-left .5s var(--ease)}
+.sw-row i:first-child{margin-left:0}
+.project:hover .sw-row i{transform:translateY(-8px) rotate(calc((var(--k) - 2)*7deg))}
+.project:hover .sw-row i:not(:first-child){margin-left:8px}
+.js .sw-row i{opacity:0}
+.project.in .sw-row i{animation:drop .9s cubic-bezier(.34,1.56,.64,1) both;animation-delay:calc(var(--k)*120ms + 600ms)}
+@keyframes drop{from{opacity:0;translate:0 -70px;rotate:-24deg}to{opacity:1;translate:0 0;rotate:0deg}}
+
+/* ---------- education timeline ---------- */
+.timeline{position:relative;margin-left:14px;padding-left:46px;max-width:760px}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:2px;background:var(--line)}
+.timeline::after{content:'';position:absolute;left:0;top:8px;width:2px;height:calc((100% - 16px)*var(--p,0));background:linear-gradient(var(--gold),var(--sky));box-shadow:0 0 14px rgba(245,194,66,.55)}
+.tl-item{position:relative;padding-bottom:46px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-55px;top:6px;width:18px;height:18px;border-radius:50%;background:var(--ink);border:3px solid var(--line);transition:border-color .5s .3s,box-shadow .5s .3s}
+.tl-item.in::before{border-color:var(--gold);box-shadow:0 0 0 7px rgba(245,194,66,.15)}
+.when{color:var(--gold);font-weight:600;font-size:.88rem}
+.tl-item h3{font-family:var(--display);font-size:1.45rem;margin:4px 0 8px;line-height:1.2}
+.tl-item p{color:var(--muted);max-width:56ch}
+
+/* ---------- contact ---------- */
+.contact-box{position:relative;overflow:hidden;text-align:center;padding:110px 28px;border:1px solid var(--line);border-radius:34px;
+  background:radial-gradient(640px circle at 50% 0%,rgba(245,194,66,.13),transparent 70%),var(--panel)}
+.orbit{position:absolute;left:50%;top:50%;translate:-50% -50%;width:min(760px,150%);aspect-ratio:1;border:1px dashed rgba(35,68,102,.95);border-radius:50%;animation:spin 60s linear infinite;pointer-events:none}
+.orbit::after{content:'';position:absolute;top:-6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+.orbit.o2{width:min(500px,100%);border-color:rgba(92,200,255,.28);animation-direction:reverse;animation-duration:40s}
+.orbit.o2::after{background:var(--sky);box-shadow:0 0 18px var(--sky)}
+@keyframes spin{to{rotate:360deg}}
+.contact-in{position:relative;z-index:2}
+.contact-box .h2{font-size:clamp(2.4rem,7vw,5.4rem);max-width:14ch;margin-inline:auto}
+.contact-box p{color:var(--muted);max-width:48ch;margin:24px auto 38px;font-size:1.08rem}
+.contact-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+
+footer{padding:34px 0 46px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.totop{padding:9px 18px;border:1px solid var(--line);border-radius:10px;font-weight:600;transition:border-color .25s,color .25s}
+.totop:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .about-grid{grid-template-columns:1fr;gap:44px}
+  .skills-grid{grid-template-columns:1fr}
+  .project{grid-template-columns:1fr}
+  .pvis,.project:nth-child(even) .pvis{order:-1;min-height:280px;padding:26px 20px}
+  .pinfo{padding:32px 26px}
+  section{padding:88px 0}
+}
+@media (max-width:820px){
+  .burger{display:block}
+  .navlinks{position:fixed;top:66px;left:16px;right:16px;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:10px;
+    opacity:0;pointer-events:none;transform:translateY(-10px) scale(.98);transition:opacity .3s,transform .3s var(--ease)}
+  .navlinks.open{opacity:1;pointer-events:auto;transform:none}
+  .navlinks a{padding:13px 16px;font-size:1rem}
+}
+@media (max-height:700px){.cue{display:none}}
+@media (max-width:520px){
+  .stats{gap:12px}
+  .contact-box{padding:84px 20px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-delay:0s !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;transition-delay:0s !important}
+  .track{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot-in">
+    <div class="boot-line"><span id="bootTxt"></span><i class="bcur"></i></div>
+    <div class="boot-bar"><b id="bootBar"></b></div>
+    <div class="boot-pct" id="bootPct">0%</div>
+  </div>
+</div>
+
+<div class="bg" aria-hidden="true"></div>
+<div class="glow" id="glow" aria-hidden="true"></div>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand"><span class="mk">M</span>Maniraj</a>
+    <div class="navlinks" id="menu">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </div>
+</nav>
+
+<main>
+<header class="hero" id="top">
+  <div class="floaters" aria-hidden="true">
+    <span style="--x:6%;--y:24%;--s:2.6rem;--t:9s">&lt;/&gt;</span>
+    <span style="--x:46%;--y:12%;--s:2rem;--t:11s">{ }</span>
+    <span style="--x:88%;--y:20%;--s:2.4rem;--t:8s">=&gt;</span>
+    <span style="--x:12%;--y:82%;--s:2rem;--t:12s">[ ]</span>
+    <span style="--x:52%;--y:88%;--s:2.6rem;--t:10s">;</span>
+    <span style="--x:92%;--y:78%;--s:2.2rem;--t:9s">( )</span>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="status" data-hero style="--d:500ms"><i class="pulse"></i>Open to collaborations</div>
+      <h1 class="name" id="name">Maniraj</h1>
+      <div class="role" data-hero style="--d:900ms"><span>I'm a&nbsp;</span><span id="roleText">Software Developer</span><i class="cursor"></i></div>
+      <p class="hero-p" data-hero style="--d:1100ms">I build for the web with HTML, CSS, and JavaScript: dark, polished interfaces and interactions that respond to the person using them. Currently in Semester II of Computer Science &amp; Engineering at Government Polytechnic Khagaria.</p>
+      <div class="hero-actions" data-hero style="--d:1300ms">
+        <a class="btn btn-primary magnetic" href="#projects">See my projects</a>
+        <a class="btn btn-ghost magnetic" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="term-wrap" data-hero style="--d:700ms">
+      <div class="term-float">
+        <div class="term term-hero" id="heroTerm">
+          <div class="term-bar"><i></i><i></i><i></i><span>maniraj@portfolio</span></div>
+          <div class="code">
+<div class="ln"><span class="c-p">$</span> whoami</div>
+<div class="ln"><span class="c-o">maniraj: software developer</span></div>
+<div class="ln">&nbsp;</div>
+<div class="ln"><span class="c-p">$</span> cat profile.json</div>
+<div class="ln">{</div>
+<div class="ln">  <span class="c-k">"role"</span>: <span class="c-s">"Software Developer"</span>,</div>
+<div class="ln">  <span class="c-k">"studying"</span>: <span class="c-s">"CSE, Semester II"</span>,</div>
+<div class="ln">  <span class="c-k">"college"</span>: <span class="c-s">"GP Khagaria"</span>,</div>
+<div class="ln">  <span class="c-k">"stack"</span>: [<span class="c-s">"HTML"</span>, <span class="c-s">"CSS"</span>, <span class="c-s">"JS"</span>],</div>
+<div class="ln">  <span class="c-k">"open_to"</span>: <span class="c-s">"collabs"</span></div>
+<div class="ln">}</div>
+<div class="ln"><span class="c-p">$</span> <span class="caret-b">&nbsp;</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cue" aria-hidden="true"></div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="track">
+    <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsive Design</span><span>DOM Scripting</span><span>CSS Animations</span><span>Git &amp; GitHub</span><span>UI Design</span><span>Problem Solving</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2 t-clip" data-title="clip">
+        <span class="mask"><span class="in-line" style="--l:0">Developer by practice.</span></span>
+        <span class="mask"><span class="in-line" style="--l:1">Engineer in training.</span></span>
+      </h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-copy">
+        <p data-anim="rise">I'm Maniraj, a software developer and engineering student in <strong>Semester II</strong> of the Computer Science &amp; Engineering diploma at <strong>Government Polytechnic Khagaria</strong>.</p>
+        <p data-anim="rise">I build for the web: clean layouts, dark premium interfaces, and interactions that respond to the person using them. <strong>Web Technology (subject code 2418102)</strong> is where it clicked, with selectors and style sheets on one side, and JavaScript functions, control flow, and exception handling on the other.</p>
+        <p data-anim="rise">I like turning what I learn in class into something I can ship, so most of my projects start as a class topic and end as a working page.</p>
+        <div class="stats" data-anim="rise">
+          <div class="stat"><b><i data-to="4">4</i></b><small>projects built</small></div>
+          <div class="stat"><b><i data-to="3">3</i></b><small>core web languages</small></div>
+          <div class="stat"><b><i data-to="2">2</i></b><small>semesters so far</small></div>
+        </div>
+      </div>
+      <div data-anim="slide-right">
+        <dl class="spec tilt" data-stagger>
+          <div class="spec-row"><dt>Role</dt><dd>Software Developer</dd></div>
+          <div class="spec-row"><dt>Branch</dt><dd>Computer Science &amp; Engineering</dd></div>
+          <div class="spec-row"><dt>Institution</dt><dd>Government Polytechnic Khagaria</dd></div>
+          <div class="spec-row"><dt>Semester</dt><dd>II</dd></div>
+          <div class="spec-row"><dt>Focus</dt><dd>Frontend, UI, interaction</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2 t-scramble" data-title="scramble">What I build with</h2>
+      <p class="lede" data-anim="rise">The languages and tools I use day to day, grouped by what I use them for.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-panel" data-anim="slide-left">
+        <h3>Languages and core</h3>
+        <p>The foundations every project sits on.</p>
+        <div class="chips" data-stagger>
+          <span class="skill">HTML5</span><span class="skill">CSS3</span><span class="skill">JavaScript</span><span class="skill">Functions</span><span class="skill">Control flow</span><span class="skill">Exception handling</span>
+        </div>
+      </div>
+      <div class="skill-panel" data-anim="flip-up">
+        <h3>Frontend</h3>
+        <p>Making interfaces look right and feel alive.</p>
+        <div class="chips" data-stagger>
+          <span class="skill">Responsive layouts</span><span class="skill">Flexbox &amp; Grid</span><span class="skill">CSS animations</span><span class="skill">DOM scripting</span><span class="skill">Dark UI design</span>
+        </div>
+      </div>
+      <div class="skill-panel" data-anim="slide-right">
+        <h3>Workflow</h3>
+        <p>How I ship and fix things.</p>
+        <div class="chips" data-stagger>
+          <span class="skill">Git &amp; GitHub</span><span class="skill">GitHub Pages</span><span class="skill">Debugging</span><span class="skill">Problem solving</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2 t-blur" data-title="blur">Things I've built</h2>
+      <p class="lede" data-anim="rise">Four projects, each one started from something I was learning.</p>
+    </div>
+    <div class="projects">
+
+      <article class="project" data-key="landing" data-anim="slide-left">
+        <div class="pinfo">
+          <h3>Web Dev Course Landing Page</h3>
+          <p>A single-page landing page for a web development course, inspired by BrainStation. Dark navy and yellow theme, sticky navbar, hero section, course cards, and an accordion curriculum written in vanilla JavaScript.</p>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Vanilla JS</span></div>
+          <div class="plinks"></div>
+        </div>
+        <div class="pvis" aria-hidden="true">
+          <div class="browser">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="mock">
+              <div class="nv b" style="--i:0"><b></b><span></span><span></span><span></span></div>
+              <div class="hr b" style="--i:1"><h5></h5><h5 class="s"></h5><em></em></div>
+              <div class="cs b" style="--i:2"><u style="--j:0"></u><u style="--j:1"></u><u style="--j:2"></u></div>
+              <div class="ac b" style="--i:3"><p></p><p></p><p></p></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" data-key="routine" data-anim="flip-up">
+        <div class="pinfo">
+          <h3>Daily Discipline &amp; Study Routine</h3>
+          <p>A designed HTML page that lays out a structured daily study and discipline routine, built to be as good to look at as it is to follow.</p>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+          <div class="plinks"></div>
+        </div>
+        <div class="pvis" aria-hidden="true">
+          <div class="routine">
+            <h4>Today</h4>
+            <ul>
+              <li style="--i:0"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><path d="M7 12.5l3.2 3.2L17 8.8"/></svg>Plan the day</li>
+              <li style="--i:1"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><path d="M7 12.5l3.2 3.2L17 8.8"/></svg>Deep study block</li>
+              <li style="--i:2"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><path d="M7 12.5l3.2 3.2L17 8.8"/></svg>Revise notes</li>
+              <li style="--i:3"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><path d="M7 12.5l3.2 3.2L17 8.8"/></svg>Practice coding</li>
+              <li style="--i:4"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><path d="M7 12.5l3.2 3.2L17 8.8"/></svg>Sleep on time</li>
+            </ul>
+            <div class="rt-bar"><i></i></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" data-key="guide" data-anim="zoom-blur">
+        <div class="pinfo">
+          <h3>Web Technology CT-2 Guide</h3>
+          <p>A styled revision guide for the Web Technology class test, covering style sheets, selectors, functions, control statements, and exception handling.</p>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+          <div class="plinks"></div>
+        </div>
+        <div class="pvis" aria-hidden="true">
+          <div class="editor">
+            <div class="ed-tabs"><span class="on">guide.js</span><span>style.css</span></div>
+            <div class="code" id="editorCode">
+<div class="ln"><span class="c-c">// control flow + exceptions</span></div>
+<div class="ln"><span class="c-k2">try</span> {</div>
+<div class="ln">  <span class="c-k2">if</span> (score &gt;= <span class="c-n">40</span>) {</div>
+<div class="ln">    <span class="c-f">print</span>(<span class="c-s">"pass"</span>);</div>
+<div class="ln">  }</div>
+<div class="ln">} <span class="c-k2">catch</span> (err) {</div>
+<div class="ln">  <span class="c-f">print</span>(err.message);</div>
+<div class="ln">}</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" data-key="portfolio" data-anim="swing">
+        <div class="pinfo">
+          <h3>This portfolio</h3>
+          <p>The page you're on. Built with plain HTML, CSS, and JavaScript, with no frameworks and no libraries. Every animation, from the boot screen to the typing terminal, is written by hand.</p>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">GitHub Pages</span></div>
+          <div class="plinks"></div>
+        </div>
+        <div class="pvis" aria-hidden="true">
+          <div class="tokens">
+            <div class="aa">Aa</div>
+            <div class="sw-row">
+              <i style="--c:#0A1626;--k:0"></i><i style="--c:#10233A;--k:1"></i><i style="--c:#F5C242;--k:2"></i><i style="--c:#5CC8FF;--k:3"></i><i style="--c:#7BE0B0;--k:4"></i>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2 t-type" data-title="type">My learning journey</h2>
+    </div>
+    <div class="timeline" id="timeline">
+      <article class="tl-item" data-anim="slide-right">
+        <span class="when">Semester I</span>
+        <h3>Started the Diploma in Computer Science &amp; Engineering</h3>
+        <p>At Government Polytechnic Khagaria. Programming and computing fundamentals that everything after it builds on.</p>
+      </article>
+      <article class="tl-item" data-anim="rise">
+        <span class="when">Semester II, in progress</span>
+        <h3>Web Technology (2418102)</h3>
+        <p>Style sheets and selectors in CSS. Functions, control statements, and exception handling in JavaScript.</p>
+      </article>
+      <article class="tl-item" data-anim="slide-right">
+        <span class="when">Now</span>
+        <h3>Turning class topics into projects</h3>
+        <p>A course landing page, a study routine page, a revision guide, and this portfolio.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box" data-anim="zoom-blur">
+      <div class="orbit" aria-hidden="true"></div>
+      <div class="orbit o2" aria-hidden="true"></div>
+      <div class="contact-in">
+        <h2 class="h2 t-wave" id="contactTitle" data-title="wave">Let's build something together.</h2>
+        <p>Open to collaborations, study partnerships, and frontend work. Reach out and I'll reply as soon as I can.</p>
+        <div class="contact-actions" id="contactActions"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Designed and built by Maniraj. Government Polytechnic Khagaria.</span>
+    <a class="totop" href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   EDIT YOUR LINKS HERE. Leave a value empty ('') to hide it.
+   ============================================================ */
+const CONFIG = {
+  email: '',                                   // e.g. 'yourname@gmail.com'
+  github: 'https://github.com/ermaniraj008-del',
+  instagram: '',                               // e.g. 'https://instagram.com/yourname'
+  linkedin: '',                                // e.g. 'https://linkedin.com/in/yourname'
+  projects: {
+    landing:   { live: '', code: '' },
+    routine:   { live: '', code: '' },
+    guide:     { live: '', code: '' },
+    portfolio: { live: '', code: 'https://github.com/ermaniraj008-del/My-portfolio-' }
+  }
+};
+
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine   = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+/* ---------- split text into animatable characters ---------- */
+function splitChars(el){
+  const text = el.textContent.trim();
+  el.setAttribute('aria-label', text);
+  el.textContent = '';
+  let i = 0;
+  const words = text.split(' ');
+  words.forEach((word, wi) => {
+    const w = document.createElement('span');
+    w.className = 'w';
+    w.setAttribute('aria-hidden', 'true');
+    [...word].forEach(c => {
+      const s = document.createElement('span');
+      s.className = 'ch';
+      s.style.setProperty('--i', i++);
+      s.textContent = c;
+      w.appendChild(s);
+    });
+    el.appendChild(w);
+    if (wi < words.length - 1) el.appendChild(document.createTextNode(' '));
+  });
+}
+splitChars($('#name'));
+splitChars($('#contactTitle'));
+
+/* ---------- typing terminals: line delays computed from text length ---------- */
+function armTyping(container, start){
+  let t = start;
+  $$('.ln', container).forEach(l => {
+    const n = l.textContent.length;
+    const dur = Math.max(n * 24, 80);
+    l.style.setProperty('--n', n);
+    l.style.setProperty('--dur', dur + 'ms');
+    l.style.setProperty('--d', t + 'ms');
+    t += dur + 140;
+  });
+}
+armTyping($('#heroTerm'), 1500);
+armTyping($('#editorCode'), 900);
+
+/* ---------- stagger indexes ---------- */
+$$('[data-stagger]').forEach(p => [...p.children].forEach((c, i) => c.style.setProperty('--i', i)));
+
+/* ---------- marquee loop ---------- */
+const track = $('#track');
+track.innerHTML += track.innerHTML;
+
+/* ---------- role typewriter ---------- */
+const roles = ['Software Developer', 'Frontend Engineer', 'CSE Student', 'Problem Solver'];
+const roleText = $('#roleText');
+function runRoles(){
+  let r = 0, c = 0, del = false;
+  (function step(){
+    const word = roles[r];
+    c += del ? -1 : 1;
+    roleText.textContent = word.slice(0, c);
+    let d = del ? 38 : 75;
+    if (!del && c === word.length){ del = true; d = 1600; }
+    else if (del && c === 0){ del = false; r = (r + 1) % roles.length; d = 350; }
+    setTimeout(step, d);
+  })();
+}
+
+/* ---------- title effects ---------- */
+function scramble(el){
+  const final = el.dataset.text;
+  const pool = '!<>-_/[]{}=+*^?#01';
+  const plan = [...final].map((c, i) => ({ c, at: Math.floor(i * 1.2 + Math.random() * 10) }));
+  const last = Math.max(...plan.map(p => p.at)) + 1;
+  el.style.visibility = 'visible';
+  let f = 0;
+  const id = setInterval(() => {
+    el.textContent = plan.map(p => p.c === ' ' ? ' ' : (f >= p.at ? p.c : pool[Math.random() * pool.length | 0])).join('');
+    if (++f > last){ clearInterval(id); el.textContent = final; }
+  }, 40);
+}
+function typeTitle(el){
+  const final = el.dataset.text;
+  el.style.visibility = 'visible';
+  el.textContent = '';
+  let i = 0;
+  const id = setInterval(() => {
+    el.textContent = final.slice(0, ++i);
+    if (i >= final.length) clearInterval(id);
+  }, 60);
+}
+function countUp(el){
+  const to = +el.dataset.to;
+  if (reduce){ el.textContent = to; return; }
+  const t0 = performance.now(), D = 1400;
+  (function f(n){
+    const p = Math.min((n - t0) / D, 1);
+    el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+    if (p < 1) requestAnimationFrame(f);
+  })(t0);
+}
+$$('.t-scramble, .t-type').forEach(el => { el.dataset.text = el.textContent; el.setAttribute('aria-label', el.textContent); });
+
+/* ---------- reveal on scroll ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    el.classList.add('in');
+    const t = el.dataset.title;
+    if (t === 'scramble') reduce ? (el.style.visibility = 'visible') : scramble(el);
+    if (t === 'type')     reduce ? (el.style.visibility = 'visible') : typeTitle(el);
+    $$('[data-to]', el).forEach(countUp);
+    io.unobserve(el);
+  });
+}, { threshold: .2, rootMargin: '0px 0px -8% 0px' });
+$$('[data-anim], [data-title], [data-stagger], .project, .chips').forEach(el => io.observe(el));
+
+/* ---------- contact + project links from CONFIG ---------- */
+(function renderLinks(){
+  const box = $('#contactActions');
+  const defs = [
+    ['email', 'Send an email', CONFIG.email ? 'mailto:' + CONFIG.email : ''],
+    ['github', 'GitHub', CONFIG.github],
+    ['instagram', 'Instagram', CONFIG.instagram],
+    ['linkedin', 'LinkedIn', CONFIG.linkedin]
+  ].filter(d => d[2]);
+  defs.forEach((d, i) => {
+    const a = document.createElement('a');
+    a.className = 'btn magnetic ' + (i === 0 ? 'btn-primary' : 'btn-ghost');
+    a.href = d[2];
+    if (d[0] !== 'email'){ a.target = '_blank'; a.rel = 'noopener'; }
+    a.textContent = d[1];
+    box.appendChild(a);
+  });
+  $$('.project').forEach(p => {
+    const c = CONFIG.projects[p.dataset.key] || {};
+    const links = $('.plinks', p);
+    [['live', 'Live site'], ['code', 'Source code']].forEach(([k, label]) => {
+      if (!c[k]) return;
+      const a = document.createElement('a');
+      a.href = c[k]; a.target = '_blank'; a.rel = 'noopener'; a.textContent = label;
+      links.appendChild(a);
+    });
+  });
+})();
+
+/* ---------- nav: burger, scrolled state, active link, progress ---------- */
+const burger = $('#burger'), menu = $('#menu'), nav = $('#nav'), prog = $('#progress'), tline = $('#timeline');
+function closeMenu(){ menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', 'Open menu'); }
+burger.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+  burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+});
+$$('a', menu).forEach(a => a.addEventListener('click', closeMenu));
+addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+const links = $$('a', menu);
+const secObs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+$$('main section').forEach(s => secObs.observe(s));
+const heroObs = new IntersectionObserver(es => { if (es[0].isIntersecting) links.forEach(a => a.classList.remove('active')); }, { threshold: .5 });
+heroObs.observe($('#top'));
+
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  prog.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+  nav.classList.toggle('scrolled', h.scrollTop > 24);
+  const r = tline.getBoundingClientRect();
+  tline.style.setProperty('--p', Math.min(Math.max((innerHeight * .6 - r.top) / r.height, 0), 1));
+}
+addEventListener('scroll', onScroll, { passive: true });
+addEventListener('resize', onScroll);
+onScroll();
+
+/* ---------- pointer effects (desktop only) ---------- */
+const glow = $('#glow');
+if (fine && !reduce){
+  let gx = innerWidth / 2, gy = innerHeight / 3, tx = gx, ty = gy;
+  addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+  (function loop(){
+    gx += (tx - gx) * .08; gy += (ty - gy) * .08;
+    glow.style.transform = 'translate3d(' + gx + 'px,' + gy + 'px,0)';
+    requestAnimationFrame(loop);
+  })();
+  $$('.tilt').forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      el.style.transform = 'perspective(900px) rotateY(' + ((x - .5) * 12) + 'deg) rotateX(' + ((.5 - y) * 12) + 'deg)';
+      el.style.setProperty('--mx', (x * 100) + '%');
+      el.style.setProperty('--my', (y * 100) + '%');
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  });
+  $$('.project').forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+  $$('.magnetic').forEach(b => {
+    b.addEventListener('mousemove', e => {
+      const r = b.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+      b.style.transform = 'translate(' + (x * .25) + 'px,' + (y * .35) + 'px)';
+    });
+    b.addEventListener('mouseleave', () => { b.style.transform = ''; });
+  });
+} else {
+  glow.style.display = 'none';
+}
+
+/* ---------- boot sequence, then start the hero ---------- */
+const boot = $('#boot');
+function startSite(){
+  document.body.classList.add('ready');
+  if (reduce) roleText.textContent = roles[0]; else setTimeout(runRoles, 1900);
+  if (boot) setTimeout(() => boot.remove(), 1200);
+}
+if (reduce){
+  boot.remove();
+  startSite();
+} else {
+  const msg = 'booting maniraj.dev';
+  const txt = $('#bootTxt'), bar = $('#bootBar'), pct = $('#bootPct');
+  let i = 0;
+  const ty = setInterval(() => { txt.textContent = msg.slice(0, ++i); if (i >= msg.length) clearInterval(ty); }, 45);
+  const t0 = performance.now(), D = 1500;
+  (function tick(now){
+    const p = Math.min((now - t0) / D, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    bar.style.transform = 'scaleX(' + e + ')';
+    pct.textContent = Math.round(e * 100) + '%';
+    if (p < 1) requestAnimationFrame(tick);
+    else { boot.classList.add('done'); setTimeout(startSite, 350); }
+  })(t0);
+}
+</script>
+</body>
+</html>
